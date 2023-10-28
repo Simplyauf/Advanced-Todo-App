@@ -44,7 +44,11 @@ function App() {
               </h4>
             </div>
           </article>
-          <TodoItemsList openModal={openModal} />
+          <TodoItemsList
+            taskList={taskList}
+            openModal={openModal}
+            setTaskList={setTaskList}
+          />
         </section>
       </div>
     </>

@@ -1,12 +1,32 @@
 import { TbSquareRoundedPlusFilled } from "react-icons/tb";
 import { BiSearch } from "react-icons/bi";
 import SingleTodoItem from "./singleTodoItem";
+import { TodoItemType } from "../utils/libs/types";
+import { useEffect, useState } from "react";
 
 interface Proptypes {
   openModal: () => void;
+  taskList: TodoItemType[];
+  setTaskList: React.Dispatch<React.SetStateAction<TodoItemType[]>>;
 }
 
-const TodoItemsList = ({ openModal }: Proptypes) => {
+const TodoItemsList = ({ openModal, taskList, setTaskList }: Proptypes) => {
+  const [currentTab, setCurrentTab] = useState("All");
+  const [currentTabData, setCurrentTabData] = useState(taskList);
+
+  const pendingTasks = taskList.filter((task) => task.status === "pending");
+  const completedTasks = taskList.filter((task) => task.status === "completed");
+
+  useEffect(() => {
+    if (currentTab === "Completed") {
+      setCurrentTabData(completedTasks);
+    } else if (currentTab === "Pending") {
+      setCurrentTabData(pendingTasks);
+    } else if (currentTab === "All") {
+      setCurrentTabData(taskList);
+    }
+  }, [taskList, currentTab]);
+
   return (
     <article className="mt-12 px-[16px] sm:px-[40px] py-[60px] mb-[120px] bg-[#fff] rounded-md sm:rounded-lg">
       <div className="w-full justify-between gap-2 flex items-center">
@@ -21,15 +41,27 @@ const TodoItemsList = ({ openModal }: Proptypes) => {
       <section className="mt-8 w-full flex flex-col gap-3">
         <div className="w-full flex rounded-md gap-4 sm:gap-6 h-[56px] p-2 justify-between bg-gray-100">
           <button
-            className="flex rounded justify-center items-center basis-1/3 h-full p-1 
-              "
+            className={`flex rounded justify-center items-center basis-1/3 h-full p-1 ${
+              currentTab === "All" && "bg-white"
+            }`}
+            onClick={() => setCurrentTab("All")}
           >
             All
           </button>
-          <button className="flex rounded justify-center items-center basis-1/3 h-full p-1">
+          <button
+            className={`flex rounded justify-center items-center basis-1/3 h-full p-1 ${
+              currentTab === "Pending" && "bg-white"
+            }`}
+            onClick={() => setCurrentTab("Pending")}
+          >
             Pending
           </button>
-          <button className="flex rounded justify-center items-center basis-1/3 h-full p-1">
+          <button
+            className={`flex rounded justify-center items-center basis-1/3 h-full p-1 ${
+              currentTab === "Completed" && "bg-white"
+            }`}
+            onClick={() => setCurrentTab("Completed")}
+          >
             Completed
           </button>
         </div>
@@ -45,8 +77,25 @@ const TodoItemsList = ({ openModal }: Proptypes) => {
           </button>
         </article>
         <div className="mt-10 flex flex-col gap-1">
-          <SingleTodoItem />
-          <SingleTodoItem />
+          {currentTabData.length <= 0 ? (
+            <div className="w-full flex justify-center items-center h-[100px]">
+              <h2 className="text-xl font-semibold font-Roboto">
+                No Available Task
+              </h2>
+            </div>
+          ) : (
+            currentTabData.map((data) => {
+              return (
+                <SingleTodoItem
+                  key={data.id}
+                  data={data}
+                  setTaskList={setTaskList}
+                  currentTab={currentTab}
+                  taskList={taskList}
+                />
+              );
+            })
+          )}
         </div>
       </section>
     </article>

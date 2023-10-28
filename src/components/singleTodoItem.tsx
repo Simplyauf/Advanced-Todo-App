@@ -2,6 +2,7 @@ import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdContentCopy } from "react-icons/md";
 import { TodoItemType } from "../utils/libs/types";
 import { useEffect, useRef, useState } from "react";
+import EditTask from "./modals/EditTask";
 
 interface PropTypes {
   data: TodoItemType;
@@ -17,19 +18,24 @@ const SingleTodoItem = ({
 }: PropTypes) => {
   const { id, date, title, status } = data;
 
-  const [statusCheck, setStatusCheck] = useState(
-    status === "completed" ? true : false
-  );
+  // edit modal
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
 
   const checkBoxRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    setStatusCheck(status === "completed" ? true : false);
-
     if (checkBoxRef && checkBoxRef.current) {
-      checkBoxRef.current.checked = data.status === "completed" ? true : false;
+      checkBoxRef.current.checked = status === "completed" ? true : false;
     }
-  }, [currentTab, data.status, taskList]);
+  }, [currentTab, status, taskList]);
 
   const toggleCompleted = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -47,6 +53,12 @@ const SingleTodoItem = ({
   };
   return (
     <>
+      <EditTask
+        isOpen={isOpen}
+        closeModal={closeModal}
+        setTaskList={setTaskList}
+        data={data}
+      />
       <article className="flex items-center w-full gap-3 sm:gap-6 justify-center min-h-[60px] px-[2%] ">
         <input
           type="checkbox"
@@ -62,7 +74,7 @@ const SingleTodoItem = ({
           <p className="basis-1/3">{date}</p>
         </div>
         <div className="flex w-auto sm:w-[15%] items-center gap-4 sm:gap-6 justify-end">
-          <AiFillEdit className="w-6 h-6 cursor-pointer" />
+          <AiFillEdit className="w-6 h-6 cursor-pointer" onClick={openModal} />
           <AiFillDelete className="w-6 h-6 cursor-pointer" />
           <MdContentCopy className="w-6 h-6 cursor-pointer" />
         </div>

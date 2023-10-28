@@ -55,6 +55,21 @@ const SingleTodoItem = ({
   const deleteTask = (id: string) => {
     setTaskList((prevData) => prevData.filter((task) => task.id !== id));
   };
+
+  const copyTaskTitle = (id: string) => {
+    const task = taskList.find((task) => task.id === id);
+
+    if (task) {
+      navigator.clipboard
+        .writeText(task.title)
+        .then(() => {
+          console.log("Text copied to clipboard successfully!");
+        })
+        .catch((err) => {
+          console.error("Unable to copy text to clipboard: ", err);
+        });
+    }
+  };
   return (
     <>
       <EditTask
@@ -83,7 +98,10 @@ const SingleTodoItem = ({
             className="w-6 h-6 cursor-pointer"
             onClick={() => deleteTask(id)}
           />
-          <MdContentCopy className="w-6 h-6 cursor-pointer" />
+          <MdContentCopy
+            className="w-6 h-6 cursor-pointer"
+            onClick={() => copyTaskTitle(id)}
+          />
         </div>
       </article>
     </>

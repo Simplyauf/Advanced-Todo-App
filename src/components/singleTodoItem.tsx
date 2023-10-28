@@ -51,6 +51,10 @@ const SingleTodoItem = ({
       )
     );
   };
+
+  const deleteTask = (id: string) => {
+    setTaskList((prevData) => prevData.filter((task) => task.id !== id));
+  };
   return (
     <>
       <EditTask
@@ -67,7 +71,7 @@ const SingleTodoItem = ({
           value={data.status === "completed" ? "true" : "false"}
           onChange={(e) => toggleCompleted(e, id)}
           id=""
-          className="min-w-[24px] min-h-[24px] w-6 h-6 accent-black"
+          className="min-w-[24px] min-h-[24px] w-6 h-6 accent-black cursor-pointer"
         />
         <div className="w-[60%] sm:w-[75%] flex gap-3  items-center">
           <h3 className="text-lg break-all font-medium basis-2/3">{title}</h3>
@@ -75,7 +79,10 @@ const SingleTodoItem = ({
         </div>
         <div className="flex w-auto sm:w-[15%] items-center gap-4 sm:gap-6 justify-end">
           <AiFillEdit className="w-6 h-6 cursor-pointer" onClick={openModal} />
-          <AiFillDelete className="w-6 h-6 cursor-pointer" />
+          <AiFillDelete
+            className="w-6 h-6 cursor-pointer"
+            onClick={() => deleteTask(id)}
+          />
           <MdContentCopy className="w-6 h-6 cursor-pointer" />
         </div>
       </article>

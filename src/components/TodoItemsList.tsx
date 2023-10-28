@@ -2,14 +2,21 @@ import { TbSquareRoundedPlusFilled } from "react-icons/tb";
 import { BiSearch } from "react-icons/bi";
 import SingleTodoItem from "./singleTodoItem";
 
-const TodoItemsList = () => {
+interface Proptypes {
+  openModal: () => void;
+}
+
+const TodoItemsList = ({ openModal }: Proptypes) => {
   return (
     <article className="mt-12 px-[16px] sm:px-[40px] py-[60px] mb-[120px] bg-[#fff] rounded-md sm:rounded-lg">
       <div className="w-full justify-between gap-2 flex items-center">
         <h2 className="font-bold font-Montserrat text-[28px] lg:text-[32px] leading-8 tracking-[0.32px]">
           Task Lists
         </h2>
-        <TbSquareRoundedPlusFilled className="w-6 h-6 sm:w-8 sm:h-8 cursor-pointer" />
+        <TbSquareRoundedPlusFilled
+          className="w-6 h-6 sm:w-8 sm:h-8 cursor-pointer"
+          onClick={openModal}
+        />
       </div>
       <section className="mt-8 w-full flex flex-col gap-3">
         <div className="w-full flex rounded-md gap-4 sm:gap-6 h-[56px] p-2 justify-between bg-gray-100">

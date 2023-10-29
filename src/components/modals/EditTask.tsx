@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { TodoItemType } from "../../utils/libs/types";
+import { toast } from "react-toastify";
 
 interface Proptypes {
   isOpen: boolean;
@@ -43,6 +44,8 @@ const EditTask = ({ isOpen, closeModal, setTaskList, data }: Proptypes) => {
       title: "",
       date: "",
     });
+
+    toast.success("Task successfully updated");
 
     closeModal();
   };

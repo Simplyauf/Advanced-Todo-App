@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { nanoid } from "nanoid";
 import { TodoItemType } from "../../utils/libs/types";
+import { toast } from "react-toastify";
 
 interface Proptypes {
   isOpen: boolean;
@@ -47,6 +48,8 @@ const CreateTask = ({ closeModal, isOpen, setTaskList }: Proptypes) => {
       title: "",
       date: "",
     });
+
+    toast.success("Task sucessfully added")
 
     closeModal();
   };

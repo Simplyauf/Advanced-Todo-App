@@ -3,6 +3,8 @@ import "./App.css";
 import { TodoItemType } from "./utils/libs/types";
 import TodoItemsList from "./components/TodoItemsList";
 import CreateTask from "./components/modals/CreateTask";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [taskList, setTaskList] = useState<TodoItemType[]>([]);
@@ -21,6 +23,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer autoClose={2000} />
       <CreateTask
         isOpen={isOpen}
         closeModal={closeModal}

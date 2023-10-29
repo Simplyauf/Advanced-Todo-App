@@ -4,6 +4,7 @@ import { TodoItemType } from "../utils/libs/types";
 import { useState } from "react";
 import EditTask from "./modals/EditTask";
 import { formatDateTime } from "../utils/formatDateTime";
+import { toast } from "react-toastify";
 
 interface PropTypes {
   data: TodoItemType;
@@ -11,7 +12,7 @@ interface PropTypes {
   taskList: TodoItemType[];
 }
 const SingleTodoItem = ({ setTaskList, data, taskList }: PropTypes) => {
-  const { id, date, title } = data;
+  const { id, date, title, status } = data;
 
   // edit modal
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +26,8 @@ const SingleTodoItem = ({ setTaskList, data, taskList }: PropTypes) => {
   };
 
   const toggleCompleted = (id: string) => {
+    status === "pending" && toast.success("Task successfully completed");
+
     setTaskList((prevData) =>
       prevData.map((task) =>
         task.id === id
@@ -39,6 +42,8 @@ const SingleTodoItem = ({ setTaskList, data, taskList }: PropTypes) => {
 
   const deleteTask = (id: string) => {
     setTaskList((prevData) => prevData.filter((task) => task.id !== id));
+
+    toast.success("Task successfully deleted");
   };
 
   const copyTaskTitle = (id: string) => {
@@ -48,10 +53,10 @@ const SingleTodoItem = ({ setTaskList, data, taskList }: PropTypes) => {
       navigator.clipboard
         .writeText(task.title)
         .then(() => {
-          console.log("Text copied to clipboard successfully!");
+          toast.success("Task successfully copied to clipboard!");
         })
-        .catch((err) => {
-          console.error("Unable to copy text to clipboard: ", err);
+        .catch(() => {
+          toast.error("Unable to copy task.Please retry");
         });
     }
   };

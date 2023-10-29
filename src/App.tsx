@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { TodoItemType } from "./utils/libs/types";
 import TodoItemsList from "./components/TodoItemsList";
@@ -7,13 +7,19 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [taskList, setTaskList] = useState<TodoItemType[]>([]);
+  const [taskList, setTaskList] = useState<TodoItemType[]>(
+    JSON.parse(localStorage.getItem("todolist") || " ") || []
+  );
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    console.log("hi");
+    localStorage.setItem("todolist", JSON.stringify(taskList));
+  }, [taskList]);
 
   const closeModal = () => {
     setIsOpen(false);
   };
-
   const openModal = () => {
     setIsOpen(true);
   };

@@ -15,7 +15,6 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    console.log("hi");
     localStorage.setItem("todolist", JSON.stringify(taskList));
   }, [taskList]);
 

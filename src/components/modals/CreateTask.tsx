@@ -40,8 +40,6 @@ const CreateTask = ({ closeModal, isOpen, setTaskList }: Proptypes) => {
       status: "pending",
     };
 
-    console.log(formData);
-
     setTaskList((prev) => [...prev, formData]);
 
     setTaskDatas({
@@ -49,7 +47,7 @@ const CreateTask = ({ closeModal, isOpen, setTaskList }: Proptypes) => {
       date: "",
     });
 
-    toast.success("Task sucessfully added")
+    toast.success("Task sucessfully added");
 
     closeModal();
   };

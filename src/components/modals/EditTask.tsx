@@ -8,9 +8,16 @@ interface Proptypes {
   closeModal: () => void;
   setTaskList: React.Dispatch<React.SetStateAction<TodoItemType[]>>;
   data: TodoItemType;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const EditTask = ({ isOpen, closeModal, setTaskList, data }: Proptypes) => {
+const EditTask = ({
+  isOpen,
+  closeModal,
+  setTaskList,
+  data,
+  setSearchQuery,
+}: Proptypes) => {
   const [taskDatas, setTaskDatas] = useState({
     title: data.title,
     date: data.date,
@@ -47,6 +54,7 @@ const EditTask = ({ isOpen, closeModal, setTaskList, data }: Proptypes) => {
 
     toast.success("Task successfully updated");
 
+    setSearchQuery("");
     closeModal();
   };
   return (

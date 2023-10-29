@@ -7,11 +7,17 @@ import { formatDateTime } from "../utils/formatDateTime";
 import { toast } from "react-toastify";
 
 interface PropTypes {
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   data: TodoItemType;
   setTaskList: React.Dispatch<React.SetStateAction<TodoItemType[]>>;
   taskList: TodoItemType[];
 }
-const SingleTodoItem = ({ setTaskList, data, taskList }: PropTypes) => {
+const SingleTodoItem = ({
+  setTaskList,
+  data,
+  taskList,
+  setSearchQuery,
+}: PropTypes) => {
   const { id, date, title, status } = data;
 
   // edit modal
@@ -38,11 +44,14 @@ const SingleTodoItem = ({ setTaskList, data, taskList }: PropTypes) => {
           : task
       )
     );
+
+    setSearchQuery("");
   };
 
   const deleteTask = (id: string) => {
     setTaskList((prevData) => prevData.filter((task) => task.id !== id));
 
+    setSearchQuery("");
     toast.success("Task successfully deleted");
   };
 
@@ -63,6 +72,7 @@ const SingleTodoItem = ({ setTaskList, data, taskList }: PropTypes) => {
   return (
     <>
       <EditTask
+        setSearchQuery={setSearchQuery}
         isOpen={isOpen}
         closeModal={closeModal}
         setTaskList={setTaskList}

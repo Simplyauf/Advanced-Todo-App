@@ -51,7 +51,7 @@ const TodoItemsList = ({ openModal, taskList, setTaskList }: Proptypes) => {
       {taskList.length > 0 ? (
         <article className="w-[300px] mt-4 flex items-center gap-4 px-4 pr-2 border border-black/30 rounded h-[44px]">
           <input
-            type="text"
+            type="search"
             name=""
             id=""
             value={searchQuery}
@@ -106,6 +106,7 @@ const TodoItemsList = ({ openModal, taskList, setTaskList }: Proptypes) => {
               searchedTask.map((data) => {
                 return (
                   <SingleTodoItem
+                    setSearchQuery={setSearchQuery}
                     key={data.id}
                     data={data}
                     setTaskList={setTaskList}
@@ -127,6 +128,7 @@ const TodoItemsList = ({ openModal, taskList, setTaskList }: Proptypes) => {
               currentTabData.map((data) => {
                 return (
                   <SingleTodoItem
+                    setSearchQuery={setSearchQuery}
                     key={data.id}
                     data={data}
                     setTaskList={setTaskList}

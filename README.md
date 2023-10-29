@@ -15,8 +15,10 @@ The **Advanced Todo App** is a powerful task management application built with V
   
 ## Screenshots
 
-![App Screenshot 1](./public/screenshot1.png)
-![App Screenshot 2](./public/screenshot2.png)
+<div style="text-align:center; display:flex;">
+  <img src="./public/screenshot1.png" alt="App Screenshot 1" style="width: 40%; border: 1px solid #ccc; box-shadow: 0px 0px 5px 0px #888;">
+  <img src="./public/screenshot2.png" alt="App Screenshot 2" style="width: 58%; border: 1px solid #ccc; box-shadow: 0px 0px 5px 0px #888;">
+</div>
 
 ## Live URL
 

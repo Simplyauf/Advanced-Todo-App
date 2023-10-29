@@ -94,7 +94,7 @@ const EditTask = ({ isOpen, closeModal, setTaskList, data }: Proptypes) => {
               type="submit"
               className="flex rounded justify-center items-center w-[158px] h-[48px] bg-gray-900 text-[#fff]"
             >
-              Edit Task
+              Update Task
             </button>
           </div>
         </form>

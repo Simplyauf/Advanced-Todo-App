@@ -97,7 +97,7 @@ const EditTask = ({
               name="date"
               id="dateTime-picker"
               required
-              className="h-[44px] mt-2 w-full pl-4 cursor-pointer  bg-gray-100 rounded-md border-transparent focus:outline-none text-[#000]"
+              className="h-[44px] px-6 mt-2 w-full pl-4   bg-gray-100 rounded-md border-transparent focus:outline-none text-[#000]"
             />
           </div>
           <div className="w-full flex justify-end mt-4">

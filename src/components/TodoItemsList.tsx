@@ -49,7 +49,7 @@ const TodoItemsList = ({ openModal, taskList, setTaskList }: Proptypes) => {
         />
       </div>
       {taskList.length > 0 ? (
-        <article className="w-[300px] mt-4 flex items-center gap-4 px-4 pr-2 border border-black/30 rounded h-[44px]">
+        <article className="w-[300px] max-w-[92%] mt-4 flex items-center gap-4 px-4 pr-2 border border-black/30 rounded h-[44px]">
           <input
             type="search"
             name=""

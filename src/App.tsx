@@ -7,9 +7,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [taskList, setTaskList] = useState<TodoItemType[]>(
-    JSON.parse(localStorage.getItem("todolist") || " ") || []
-  );
+  const storedData = localStorage.getItem("todolist");
+
+  const initialTaskList = storedData ? JSON.parse(storedData) : [];
+
+  const [taskList, setTaskList] = useState<TodoItemType[]>(initialTaskList);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { MdContentCopy } from "react-icons/md";
 import { TodoItemType } from "../utils/libs/types";
 import { useState } from "react";
@@ -84,11 +84,11 @@ const SingleTodoItem = ({ setTaskList, data, taskList }: PropTypes) => {
           </p>
         </div>
         <div className="flex w-auto sm:w-[20%] items-center gap-3 sm:gap-6 justify-end">
-          <AiFillEdit
+          <AiOutlineEdit
             className="sm:w-6 sm:h-6 w-4 h-4 cursor-pointer "
             onClick={openModal}
           />
-          <AiFillDelete
+          <AiOutlineDelete
             className="sm:w-6 sm:h-6 w-4 h-4 cursor-pointer "
             onClick={() => deleteTask(id)}
           />

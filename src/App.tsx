@@ -27,7 +27,7 @@ function App() {
         setTaskList={setTaskList}
       />
       <div className=" min-h-screen w-full flex justify-center ">
-        <section className="w-[768px] max-w-[92%] sm:max-w-[80%] mt-[40px]">
+        <section className="w-[768px] max-w-[92%] md:max-w-[80%] mt-[40px]">
           <article className="px-4 sm:px-[40px] py-[60px] bg-[#fff] rounded-md sm:rounded-lg">
             <h2 className="font-bold font-Montserrat text-[28px] sm:text-[32px] leading-10 tracking-[0.32px]">
               Welcome back

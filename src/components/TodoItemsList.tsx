@@ -109,7 +109,6 @@ const TodoItemsList = ({ openModal, taskList, setTaskList }: Proptypes) => {
                     key={data.id}
                     data={data}
                     setTaskList={setTaskList}
-                    currentTab={currentTab}
                     taskList={taskList}
                   />
                 );
@@ -131,7 +130,6 @@ const TodoItemsList = ({ openModal, taskList, setTaskList }: Proptypes) => {
                     key={data.id}
                     data={data}
                     setTaskList={setTaskList}
-                    currentTab={currentTab}
                     taskList={taskList}
                   />
                 );
